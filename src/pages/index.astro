@@ -15,68 +15,361 @@ const posts = await getCollection("posts");
 ---
 
 <Layout>
-  <main class="flex flex-col gap-20">
-    <article class="flex flex-col gap-8">
-      <h1 class="text-3xl text-neutral-100">{presentation.title}</h1>
-      <h2
-        class="max-w-[60ch] leading-6"
-        set:html={convertAsteriskToStrongTag(presentation.description)}
-      />
-      <SocialLinks />
-    </article>
+  <main class="flex flex-col">
+    <div
+      class="container flex flex-col my-4 mx-auto lg:flex-row lg:items-center"
+    >
+      <div class="w-full text-center">
+        <h1
+          class="text-2xl font-bold tracking-wide text-gray-800 dark:text-white lg:text-4xl"
+        >
+          Bienvenue à la Ferme de la Garenne
+        </h1>
+      </div>
+    </div>
+    <div
+      class="container flex flex-col px-6 mx-auto lg:h-[32rem] lg:flex-row lg:items-center"
+    >
+      <div class="flex items-center justify-center w-full h-96 lg:w-1/2 mr-3">
+        <img
+          class="object-cover w-full h-full mx-auto rounded-md lg:max-w-2xl"
+          src="http://www.fermedelagarenne.fr/public/2020-12/Etal%20magasin.jpg"
+          alt="glasses photo"
+        />
+      </div>
+      <div class="w-full lg:w-1/2 mt-5 md:mt-0">
+        <div class="">
+          <div class="space-y-5 ml-6">
+            <h4
+              class="flex items-center -mx-2 text-gray-700 dark:text-gray-200"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-8 h-8 mx-2 text-green-500"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
 
-    <article class="flex flex-col gap-8">
-      <header class="flex w-full flex-row justify-between gap-2">
-        <h3 class="text-lg text-neutral-100">Latest posts</h3>
-        <Link href="/posts" label="See all posts" isUnderline target="_self" />
-      </header>
-      {posts.length === 0 && <p>Soon, stay connected 👀...</p>}
+              <span class="mx-2">
+                <a
+                  class="underline decoration-green-500 decoration-2 underline-offset-4"
+                  href="/magasin">Visitez notre boutique! Dès maintenant</a
+                >
+              </span>
+            </h4>
 
-      <section class="flex flex-col gap-4 md:flex-row md:flex-wrap">
-        {
-          posts.length !== 0 &&
-            posts
-              .slice(0, 2)
-              .map((post) => (
-                <PostCard
-                  publishedAt={post.data.publishedAt}
-                  title={post.data.title}
-                  description={post.data.description}
-                  slug={post.slug}
-                />
-              ))
-        }
-      </section>
-    </article>
+            <h4
+              class="flex items-center -mx-2 text-gray-700 dark:text-gray-200"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-8 h-8 mx-2 text-green-500"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
 
-    <article class="flex flex-col gap-8">
-      <header class="flex w-full flex-row justify-between gap-2">
-        <h3 class="text-lg text-neutral-100">
-          Selected projects ({projects.length})
-        </h3>
-      </header>
-      {projects.length === 0 && <p>Oops, I must work^^^^^</p>}
+              <span class="mx-2">Pré-commandez vos produits</span>
+            </h4>
 
-      <section class="flex flex-col gap-4">
-        {
-          projects.length !== 0 &&
-            projects.map((project) => <ProjectCard {...project} />)
-        }
-      </section>
-    </article>
+            <h4
+              class="flex items-center -mx-2 text-gray-700 dark:text-gray-200"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-8 h-8 mx-2 text-green-500"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
 
-    <article class="flex flex-col gap-8">
-      <header class="flex w-full flex-row justify-between gap-2">
-        <h3 class="text-lg text-neutral-100">Get in touch</h3>
-      </header>
-      <p>
-        Email me at <Link
-          href={`mailto:${presentation.mail}`}
-          label={presentation.mail}
-        /> or follow me via my social links.
-      </p>
+              <span class="mx-2">Venez les retirer en magasin</span>
+            </h4>
 
-      <SocialLinks />
-    </article>
+            <p class="text-lg">
+              Sur place, vous pourrez faire le plein de légumes frais et de
+              saison,et découvrir notre gamme de produits laitiers préparés à la
+              ferme (crèmes glacées, fromages, beurre).
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="container flex flex-col my-4 mx-auto lg:flex-row lg:items-center"
+    >
+      <div class="w-full text-center">
+        <h2
+          class="text-lg font-bold tracking-wide text-gray-800 dark:text-white lg:text-3xl"
+        >
+          Horaires d'ouverture
+        </h2>
+        <h4
+          class="flex items-center -mx-2 text-gray-700 dark:text-gray-200 mt-2"
+        >
+          <svg
+            class="w-6 h-6 mx-2 text-green-500"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              d="M9 1V3H15V1H17V3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3H7V1H9ZM20 11H4V19H20V11ZM7 5H4V9H20V5H17V7H15V5H9V7H7V5Z"
+            >
+            </path>
+          </svg>
+          <span class="mx-2 text-lg"
+            >Toute l'année, lundi, jeudi et samedi : 10h à 12h</span
+          >
+        </h4>
+        <h4
+          class="flex items-center -mx-2 text-gray-700 dark:text-gray-200 mt-2"
+        >
+          <svg
+            class="w-6 h-6 mx-2 text-green-500"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            fill="none"
+          >
+            <path
+              d="M12 18C8.68629 18 6 15.3137 6 12C6 8.68629 8.68629 6 12 6C15.3137 6 18 8.68629 18 12C18 15.3137 15.3137 18 12 18ZM12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16ZM11 1H13V4H11V1ZM11 20H13V23H11V20ZM3.51472 4.92893L4.92893 3.51472L7.05025 5.63604L5.63604 7.05025L3.51472 4.92893ZM16.9497 18.364L18.364 16.9497L20.4853 19.0711L19.0711 20.4853L16.9497 18.364ZM19.0711 3.51472L20.4853 4.92893L18.364 7.05025L16.9497 5.63604L19.0711 3.51472ZM5.63604 16.9497L7.05025 18.364L4.92893 20.4853L3.51472 19.0711L5.63604 16.9497ZM23 11V13H20V11H23ZM4 11V13H1V11H4Z"
+            >
+            </path>
+          </svg>
+          <span class="mx-2 text-lg"
+            >En juillet/août : mercredi de 17h à 19h</span
+          >
+        </h4>
+        <h4
+          class="flex items-center -mx-2 text-gray-700 dark:text-gray-200 mt-2"
+        >
+          <svg
+            class="w-6 h-6 mx-2 text-green-500"
+            stroke="currentColor"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M19 20H5V21C5 21.5523 4.55228 22 4 22H3C2.44772 22 2 21.5523 2 21V11L4.4805 5.21216C4.79566 4.47679 5.51874 4 6.31879 4H17.6812C18.4813 4 19.2043 4.47679 19.5195 5.21216L22 11V21C22 21.5523 21.5523 22 21 22H20C19.4477 22 19 21.5523 19 21V20ZM20 13H4V18H20V13ZM4.17594 11H19.8241L17.6812 6H6.31879L4.17594 11ZM6.5 17C5.67157 17 5 16.3284 5 15.5C5 14.6716 5.67157 14 6.5 14C7.32843 14 8 14.6716 8 15.5C8 16.3284 7.32843 17 6.5 17ZM17.5 17C16.6716 17 16 16.3284 16 15.5C16 14.6716 16.6716 14 17.5 14C18.3284 14 19 14.6716 19 15.5C19 16.3284 18.3284 17 17.5 17Z"
+            >
+            </path>
+          </svg>
+          <span class="mx-2 text-left text-lg"
+            >Drive Fermier Retrouvez également nos produits ainsi que ceux des
+            producteurs " Les Bios du Coin " sur le site <a
+              class="underline"
+              target="_blank"
+              href="https://www.cagette.net">www.cagette.net</a
+            >.
+            <br />
+             Rejoignez le groupe le plus proche de chez vous :
+          </span>
+        </h4>
+        <div class="mt-4 text-left ml-6">
+          <ul class="rounded list-disc">
+            <li
+              class="px-4 py-2 bg-white hover:bg-green-100 cursor-pointer hover:text-green-900 transition-all duration-300 ease-in-out"
+            >
+              Blevaincourt
+            </li>
+            <li
+              class="px-4 py-2 bg-white hover:bg-green-100 cursor-pointer hover:text-green-900 transition-all duration-300 ease-in-out"
+            >
+              Vrécourt
+            </li>
+            <li
+              class="px-4 py-2 bg-white hover:bg-green-100 cursor-pointer hover:text-green-900 transition-all duration-300 ease-in-out"
+            >
+              Lamarche
+            </li>
+            <li
+              class="px-4 py-2 bg-white hover:bg-green-100 cursor-pointer hover:text-green-900 transition-all duration-300 ease-in-out"
+            >
+              Martigny-les-Bains
+            </li>
+            <li
+              class="px-4 py-2 bg-white hover:bg-green-100 cursor-pointer hover:text-green-900 transition-all duration-300 ease-in-out"
+            >
+              Vioménil, Relanges, Outremécourt, Xertigny (pour les glaces)
+            </li>
+          </ul>
+        </div>
+        <div class="flex flex-col mt-4">
+          <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+            <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+              <div class="overflow-hidden">
+                <table class="min-w-full text-center">
+                  <thead class="border">
+                    <tr>
+                      <th
+                        scope="col"
+                        class="text-sm font-medium text-gray-900 px-6 py-4"
+                      >
+                        <strong>Jour</strong>
+                      </th>
+                      <th
+                        scope="col"
+                        class="text-sm font-medium text-gray-900 px-6 py-4"
+                      >
+                        <strong>Toute l'année</strong>
+                      </th>
+                      <th
+                        scope="col"
+                        class="text-sm font-medium text-gray-900 px-6 py-4"
+                      >
+                        <strong>L'été (Juillet/Août)</strong>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="border">
+                      <td
+                        class="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap"
+                      >
+                        Lundi
+                      </td>
+                      <td
+                        class="text-sm bg-green-100 border-green-200 text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        10h à 12h
+                      </td>
+                      <td
+                        class="text-sm bg-green-100 border-green-200 text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        10h à 12h
+                      </td>
+                    </tr>
+                    <tr class="border">
+                      <td
+                        class="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap"
+                      >
+                        Mardi
+                      </td>
+                      <td
+                        class="text-sm bg-red-100 border-red-200 text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        Fermé
+                      </td>
+                      <td
+                        class="text-sm bg-red-100 border-red-200 text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        Fermé
+                      </td>
+                    </tr>
+                    <tr class="border">
+                      <td
+                        class="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap"
+                      >
+                        Mercredi
+                      </td>
+                      <td
+                        class="text-sm bg-red-100 border-red-200 text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        Fermé
+                      </td>
+                      <td
+                        class="text-sm bg-green-100 border-green-200 text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        17h à 19h
+                      </td>
+                    </tr>
+                    <tr class="border">
+                      <td
+                        class="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap"
+                      >
+                        Jeudi
+                      </td>
+                      <td
+                        class="text-sm bg-green-100 border-green-200 text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        10h à 12h
+                      </td>
+                      <td
+                        class="text-sm bg-green-100 border-green-200 text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        10h à 12h
+                      </td>
+                    </tr>
+                    <tr class="border">
+                      <td
+                        class="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap"
+                      >
+                        Vendredi
+                      </td>
+                      <td
+                        class="text-sm bg-red-100 border-red-200 text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        Fermé
+                      </td>
+                      <td
+                        class="text-sm bg-red-100 border-red-200 text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        Fermé
+                      </td>
+                    </tr>
+                    <tr class="border">
+                      <td
+                        class="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap"
+                      >
+                        Samedi
+                      </td>
+                      <td
+                        class="text-sm bg-green-100 border-green-200 text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        10h à 12h
+                      </td>
+                      <td
+                        class="text-sm bg-green-100 border-green-200 text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        10h à 12h
+                      </td>
+                    </tr>
+                    <tr class="border">
+                      <td
+                        class="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap"
+                      >
+                        Dimanche
+                      </td>
+                      <td
+                        class="text-sm bg-red-100 border-red-200 text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        Fermé
+                      </td>
+                      <td
+                        class="text-sm bg-red-100 border-red-200 text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        Fermé
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
 </Layout>

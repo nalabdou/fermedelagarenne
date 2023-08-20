@@ -11,4 +11,11 @@ const postsCollection = defineCollection({
   }),
 });
 
-export const collections = { posts: postsCollection };
+const productsCollection = defineCollection({
+  type: "content",
+  schema: z.object({
+    title: z.string()
+  })
+})
+
+export const collections = { posts: postsCollection, products: productsCollection };

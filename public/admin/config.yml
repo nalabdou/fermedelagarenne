@@ -1,26 +1,24 @@
 backend:
-  name: github
-  repo: nalabdou/fermedelagarenne
+  name: git-gateway
   branch: main
-  squash_merges: true
-  open_authoring: true
+  commit_messages:
+    create: "Create {{collection}} “{{slug}}”"
+    update: "Update {{collection}} “{{slug}}”"
+    delete: "Delete {{collection}} “{{slug}}”"
+    uploadMedia: "[skip ci] Upload “{{path}}”"
+    deleteMedia: "[skip ci] Delete “{{path}}”"
 
-publish_mode: editorial_workflow
+local_backend: true
 media_folder: public/images
 public_folder: /images
 site_url: "https://resonant-bublanina-6e1de9.netlify.app/"
 
 collections:
-  - name: post
-    label: Posts
-    folder: src/content/posts
+  - name: produit
+    label: produits
+    folder: src/content/produits
     create: true
     format: frontmatter
-    preview_path: post/{{slug}}
+    preview_path: produit/{{slug}}
     fields:
       - { name: title, label: Title }
-      - { name: description, label: Description }
-      - { name: publishedAt, label: Date, widget: date }
-      - {label: "Publish", name: "isPublish", widget: "boolean", default: true}
-      - {label: "Draft", name: "isDraft", widget: "boolean", default: false}
-      - { name: body, label: Body, widget: markdown }
